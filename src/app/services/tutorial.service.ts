@@ -19,15 +19,15 @@ export class TutorialService {
     return this.http.post(`${baseUrl}/createTutorial`, data);
   }
   update(id:number, data:any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.http.put(`${baseUrl}/updateTutorialById/${id}`, data);
   }
   delete(id:number): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+    return this.http.delete(`${baseUrl}/deleteTutorialById/${id}`);
   }
   deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
+    return this.http.delete(`${baseUrl}/deleteAllTutorials`);
   }
   findByTitle(title:string): Observable<any> {
-    return this.http.get(`${baseUrl}/getByTilte?title=${title}`);
+    return this.http.get(`${baseUrl}/getTutorialsWithTilte?title=${title}`);
   }
 }

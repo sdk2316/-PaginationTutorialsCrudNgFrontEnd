@@ -22,7 +22,7 @@ export class TutorialsListComponent implements OnInit {
   ngOnInit(): void {
     this.retrieveTutorials();
   }
-
+//done
   retrieveTutorials(): void {
     this.tutorialService.getAll()
       .subscribe(
@@ -48,6 +48,7 @@ export class TutorialsListComponent implements OnInit {
     this.currentTutorial = tutorial;
     this.currentIndex = index;
   }
+  //done
   removeAllTutorials(): void {
     this.tutorialService.deleteAll()
       .subscribe(
@@ -59,6 +60,8 @@ export class TutorialsListComponent implements OnInit {
           console.log(error);
         });
   }
+
+  //done
   searchTitle(): void {
     this.tutorialService.findByTitle(this.title)
       .subscribe(
