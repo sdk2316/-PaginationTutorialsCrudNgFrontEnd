@@ -15,24 +15,53 @@ export class TutorialsListComponent implements OnInit {
     published: false
   };
   currentIndex = -1;
-  title = '';
+  title  = '';
+  page = 1;
+  count = 0;
+  pageSize = 3;
+  pageSizes = [3, 6, 9];
 
   constructor(private tutorialService: TutorialService) { }
 
   ngOnInit(): void {
+    this.searchTitle();
     this.retrieveTutorials();
+  }
+
+  // get param
+
+  getRequestParams(searchTitle:string, page: number, pageSize: number){
+    // tslint:disable-next-line:prefer-const
+    let params = {};
+  
+    return params;
   }
 //done
   retrieveTutorials(): void {
-    this.tutorialService.getAll()
+    const params = this.getRequestParams(this.title, this.page, this.pageSize);
+    this.tutorialService.getAll(params)
       .subscribe(
-        data => {
-          this.tutorials = data;
-          console.log(data);
+        response=> {
+          const { tutorials, totalItems } = response;
+          this.tutorials = tutorials;
+          this.count = totalItems;
         },
         error => {
           console.log(error);
         });
+  }
+//paginationa
+
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.retrieveTutorials();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.retrieveTutorials();
   }
   refreshList(): void {
     this.retrieveTutorials();

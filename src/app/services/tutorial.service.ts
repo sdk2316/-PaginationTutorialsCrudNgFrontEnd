@@ -9,8 +9,11 @@ const baseUrl = 'http://localhost:9090/api/tutorials';
 export class TutorialService {
 
   constructor(private http: HttpClient) { }
-  getAll(): Observable<any> {
-    return this.http.get(`${baseUrl}/getTutorialsWithTilte`);
+  // getAll(): Observable<any> {
+  //   return this.http.get(`${baseUrl}/getTutorialsWithTilte`);
+  // }
+  getAll(params: any): Observable<any> {
+    return this.http.get(`${baseUrl}/paginationng serve`,{ params });
   }
   get(id:number): Observable<any> {
     return this.http.get(`${baseUrl}/getTutorialById/${id}`);
